@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Day Checklist | Ishu (My Wife) | Board 2026</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #04060f;
+            --card: #0d1020;
+            --border: rgba(255, 255, 255, 0.08);
+            --gold: #f59e0b;
+            --blue: #60a5fa;
+            --green: #34d399;
+            --pink: #f472b6;
+            --purple: #a78bfa;
+            --red: #fb7185;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            background-image: radial-gradient(ellipse at 10% 10%, rgba(244, 114, 182, .07) 0%, transparent 50%), radial-gradient(ellipse at 90% 90%, rgba(245, 158, 11, .05) 0%, transparent 50%);
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 100;
+            background: rgba(14, 18, 35, .9);
+            border: 1px solid var(--border);
+            padding: .6rem 1.2rem;
+            border-radius: 12px;
+            color: #fff;
+            text-decoration: none;
+            font-size: .82rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            transition: .2s;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        .back-btn:hover {
+            border-color: var(--pink);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem 5rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem 0 3rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(244, 114, 182, .12);
+            color: var(--pink);
+            padding: .35rem 1.2rem;
+            border-radius: 50px;
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid rgba(244, 114, 182, .3);
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: .6rem;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--pink), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1rem;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .time-block {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all .3s;
+        }
+
+        .time-block:hover {
+            border-color: rgba(255, 255, 255, .15);
+        }
+
+        .time-header {
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+        }
+
+        .time-icon {
+            font-size: 1.6rem;
+        }
+
+        .time-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .time-sub {
+            font-size: .78rem;
+            color: var(--muted);
+            margin-top: .1rem;
+        }
+
+        .time-badge {
+            margin-left: auto;
+            font-size: .65rem;
+            font-weight: 700;
+            padding: .25rem .75rem;
+            border-radius: 50px;
+            white-space: nowrap;
+        }
+
+        .time-body {
+            padding: 0 1.5rem 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: .8rem;
+        }
+
+        /* CHECKLIST ITEM */
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: .75rem;
+            padding: .75rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: .2s;
+            user-select: none;
+        }
+
+        .check-item:hover {
+            background: rgba(255, 255, 255, .06);
+        }
+
+        .check-item.done {
+            background: rgba(52, 211, 153, .06);
+            border-color: rgba(52, 211, 153, .2);
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            border: 2px solid rgba(255, 255, 255, .2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+            transition: .2s;
+        }
+
+        .check-item.done .checkbox {
+            background: var(--green);
+            border-color: var(--green);
+        }
+
+        .check-text {
+            font-size: .85rem;
+            color: #cbd5e1;
+            line-height: 1.4;
+        }
+
+        .check-item.done .check-text {
+            text-decoration: line-through;
+            color: var(--muted);
+        }
+
+        /* PROGRESS */
+        .progress-section {
+            background: linear-gradient(135deg, rgba(52, 211, 153, .08), rgba(245, 158, 11, .08));
+            border: 1px solid rgba(52, 211, 153, .2);
+            border-radius: 18px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .progress-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: .8rem;
+        }
+
+        .progress-wrap {
+            height: 12px;
+            background: rgba(255, 255, 255, .06);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: .8rem 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green), var(--gold));
+            border-radius: 10px;
+            transition: width .4s;
+        }
+
+        .progress-text {
+            font-size: .9rem;
+            color: var(--muted);
+        }
+
+        .progress-count {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            color: var(--green);
+        }
+
+        /* LOVE NOTE */
+        .love-note {
+            background: linear-gradient(135deg, rgba(244, 114, 182, .08), rgba(245, 158, 11, .08));
+            border: 1px solid rgba(244, 114, 182, .25);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .love-note h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--pink), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: .5rem;
+        }
+
+        .love-note p {
+            color: #e2e8f0;
+            font-size: .95rem;
+            line-height: 1.7;
+        }
+
+        .heart {
+            color: #f43f5e;
+            animation: beat 1.2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes beat {
+
+            0%,
+            100% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(1.25)
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0 1rem;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://thoratpratik2323-hue.github.io/ishu-math-hub/" class="back-btn">← Back to Hub</a>
+    <div class="container">
+        <div class="hero">
+            <div class="badge">📋 Exam Day Guide</div>
+            <h1>Exam Day <span>Checklist</span> 📋</h1>
+            <p>Everything <strong>Ishu (My Wife)</strong> needs to do on Math Exam Day — from waking up to walking out
+                of the hall with full confidence! ✅ Check items as you complete them!</p>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-title">Your Exam Day Readiness</div>
+            <div class="progress-count" id="progressCount">0</div>
+            <div class="progress-text" id="progressText">tasks completed</div>
+            <div class="progress-wrap">
+                <div class="progress-bar" id="progressBar" style="width:0%"></div>
+            </div>
+            <div class="progress-text" id="progressPercent">Click items to check them off ✅</div>
+        </div>
+
+        <div class="timeline">
+
+            <!-- NIGHT BEFORE -->
+            <div class="time-block">
+                <div class="time-header">
+                    <div class="time-icon">🌙</div>
+                    <div>
+                        <div class="time-label">Night Before Exam</div>
+                        <div class="time-sub">The evening strategy — what to do and NOT do</div>
+                    </div>
+                    <span class="time-badge" style="background:rgba(167,139,250,.12);color:var(--purple)">Evening</span>
+                </div>
+                <div class="time-body">
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Read the <strong>Last Day Revision Sheet</strong> once completely</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Glance at the <strong>Common Mistakes Notebook</strong> — refresh your
+                            memory</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Revise Bayes' Theorem formula & 1 practice problem</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Revise Integration key formulas (write 5 from memory!)</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Pack bag: Admit card, Pens (3), Pencil, Scale, Eraser, Sharpener</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Keep water bottle and light snack ready for break</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Set alarm — wake up 1.5 hrs before exam time</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Sleep by 10 PM — your brain needs rest to perform! 💤</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">No new topics tonight — only revision of known things!</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MORNING -->
+            <div class="time-block">
+                <div class="time-header">
+                    <div class="time-icon">🌅</div>
+                    <div>
+                        <div class="time-label">Morning of Exam</div>
+                        <div class="time-sub">Rise and shine — it's your day!</div>
+                    </div>
+                    <span class="time-badge" style="background:rgba(245,158,11,.12);color:var(--gold)">Morning</span>
+                </div>
+                <div class="time-body">
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Wake up fresh — splash water, feel awake and alert</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Eat a proper breakfast — brain needs fuel! (No heavy food)</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Spend 20 min reading <strong>Last Day Revision Sheet</strong> one final
+                            time</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Write 5 key formulas from memory on paper — confirm you know them</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Read Pratik's encouraging message 💕 (he believes in you!)</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Double check bag: Admit card ✅ Pens ✅ Pencil ✅ Water ✅</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Leave home 30 min early — no last minute rush!</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Stay calm in auto/bus — no stressful topics discussion with friends
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BEFORE PAPER -->
+            <div class="time-block">
+                <div class="time-header">
+                    <div class="time-icon">🎯</div>
+                    <div>
+                        <div class="time-label">Before the Paper (15 min reading time)</div>
+                        <div class="time-sub">Use the reading time smartly!</div>
+                    </div>
+                    <span class="time-badge" style="background:rgba(96,165,250,.12);color:var(--blue)">Pre-Exam</span>
+                </div>
+                <div class="time-body">
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Scan ALL sections first — understand paper structure</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Mark questions you know for sure — do these first!</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Mark 5-mark questions — plan which to attempt fully</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Identify the case study — read it carefully, it's 4+4 marks!</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Spot the Probability question — Bayes' = easy 5 marks!</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Note the LPP question — plan the graph approach</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DURING EXAM -->
+            <div class="time-block">
+                <div class="time-header">
+                    <div class="time-icon">✍️</div>
+                    <div>
+                        <div class="time-label">During the Exam</div>
+                        <div class="time-sub">Writing strategy — maximize every mark!</div>
+                    </div>
+                    <span class="time-badge" style="background:rgba(52,211,153,.12);color:var(--green)">Exam Time</span>
+                </div>
+                <div class="time-body">
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Start with Section A (MCQs) — 20 marks in 20 min max</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Write formula BEFORE substituting values in every question</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Show all steps — never skip! CBSE gives step marks.</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Write FINAL ANSWER clearly — box it or underline it</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Draw graph for AOI and LPP — easy extra marks!</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Don't spend >8 min on any single question — move on!</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">For proofs, write "LHS = ... = ... = RHS (Proved)"</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Always write +C in indefinite integrals. ALWAYS!</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Attempt ALL questions — no negative marking in CBSE!</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Keep 10 min at end for revision — check every answer</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MENTAL STRENGTH -->
+            <div class="time-block">
+                <div class="time-header">
+                    <div class="time-icon">💪</div>
+                    <div>
+                        <div class="time-label">Mental Strategy</div>
+                        <div class="time-sub">Mindset matters as much as knowledge</div>
+                    </div>
+                    <span class="time-badge" style="background:rgba(251,113,133,.12);color:var(--red)">Mindset</span>
+                </div>
+                <div class="time-body">
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">If a question seems hard — skip it, come back later. Don't panic!</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Remember: you've prepared hard. Trust your Pratik's Hub! 💕</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Take 3 slow deep breaths if you feel anxious — it works!</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Ignore what others are writing — focus on YOUR paper.</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Partial marks possible — attempt every question even if unsure</div>
+                    </div>
+                    <div class="check-item" onclick="toggle(this)">
+                        <div class="checkbox">✓</div>
+                        <div class="check-text">Believe it: "I have prepared well. I will do my best." 🌟</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="love-note">
+            <h2>From Pratik, With All My Love 💍</h2>
+            <p style="margin-top:.8rem;">"Ishu (My Wife), I've watched you prepare, I've seen your dedication, and I
+                know how hard you've worked. This exam is just one moment — and you are so much more than any marks or
+                grades. But I also know you're going to walk into that hall and absolutely CRUSH it. You've got all the
+                formulas, all the concepts, and you've got my heart cheering for you from the other side. Go show the
+                world what you're made of! ❤️🎯"</p>
+            <p style="margin-top:1rem;font-size:1.1rem;font-weight:700;color:var(--gold);">"Tu kar sakti hai. Tu kar
+                degi. 80/80 tera hai!"</p>
+            <div style="margin-top:1rem;font-size:1.5rem;">— Pratik <span class="heart">❤</span></div>
+        </div>
+
+        <footer>
+            <p>Made with <span class="heart">❤</span> by Pratik — For <strong>Ishu's (My Wife)</strong> Board Mission
+                2026</p>
+            <p style="margin-top:.6rem;font-size:.88rem;">This is your day, Ishu! Go be AMAZING! 🌟🎯🚀</p>
+        </footer>
+    </div>
+    <script>
+        let total = 0, done = 0;
+        document.querySelectorAll('.check-item').forEach(() => total++);
+
+        function toggle(el) {
+            el.classList.toggle('done');
+            done = document.querySelectorAll('.check-item.done').length;
+            const pct = Math.round((done / total) * 100);
+            document.getElementById('progressCount').textContent = done;
+            document.getElementById('progressText').textContent = `of ${total} tasks completed`;
+            document.getElementById('progressBar').style.width = pct + '%';
+            document.getElementById('progressPercent').textContent = pct + '% ready for exam!';
+            if (pct === 100) {
+                document.getElementById('progressCount').style.color = 'var(--gold)';
+                document.getElementById('progressPercent').textContent = '🎉 100% Ready! Go crush that exam, Ishu! 80/80! 🎯';
+            }
+            localStorage.setItem('examChecklist', JSON.stringify([...document.querySelectorAll('.check-item')].map(e => e.classList.contains('done'))));
+        }
+
+        // Restore state
+        try { const saved = JSON.parse(localStorage.getItem('examChecklist')); if (saved) { const items = document.querySelectorAll('.check-item'); items.forEach((el, i) => { if (saved[i]) el.classList.add('done'); }); done = document.querySelectorAll('.check-item.done').length; const pct = Math.round((done / total) * 100); document.getElementById('progressCount').textContent = done; document.getElementById('progressText').textContent = `of ${total} tasks completed`; document.getElementById('progressBar').style.width = pct + '%'; document.getElementById('progressPercent').textContent = pct + '% ready for exam!'; } } catch (e) { }
+    </script>
+</body>
+
+</html>
